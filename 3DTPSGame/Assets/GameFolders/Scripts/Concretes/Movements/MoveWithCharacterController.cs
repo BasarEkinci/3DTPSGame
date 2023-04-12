@@ -15,6 +15,7 @@ namespace TPSGame.Movements
             characterController = playerController.GetComponent<CharacterController>();
         }
         
+        
         public void MoveAction(Vector3 direction,float moveSpeed)
         {
             if (direction.magnitude == 0) return;

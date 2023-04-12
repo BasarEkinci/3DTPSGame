@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using TPSGame.Abstracts.Inputs;
 using TPSGame.Abstracts.Movements;
+using TPSGame.Animations;
 using TPSGame.Movements;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace TPSGame.Controllers
         
         private IInputReader input;
         private IMover mover;
+        private CharacterAnimation animation;
 
         private Vector3 direction;
         
@@ -22,6 +24,7 @@ namespace TPSGame.Controllers
         {
             input = GetComponent<IInputReader>();
             mover = new MoveWithCharacterController(this);
+            animation = new CharacterAnimation(this);
         }
         private void Update()
         {
@@ -31,6 +34,11 @@ namespace TPSGame.Controllers
         private void FixedUpdate()
         {
             mover.MoveAction(direction,moveSpeed);
+        }
+
+        private void LateUpdate()
+        {
+            animation.MoveAnimation(direction.magnitude);
         }
     }    
 }
