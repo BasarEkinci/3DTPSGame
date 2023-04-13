@@ -15,6 +15,7 @@ namespace TPSGame.Controllers
         [SerializeField] private float moveSpeed = 10f;
         [SerializeField] private float turnSpeed = 10f;
         [SerializeField] private Transform turnTransform;
+        [SerializeField] private WeaponController currentWeapon;
         
         private IInputReader input;
         private IMover mover;
@@ -42,6 +43,9 @@ namespace TPSGame.Controllers
             
             xRotation.RotationAction(input.Rotation.x,turnSpeed);
             yRotation.RotationAction(input.Rotation.y,turnSpeed);
+            
+            if(input.IsAttackButtonPressed)
+                currentWeapon.Attack();
         }
 
         private void FixedUpdate()
