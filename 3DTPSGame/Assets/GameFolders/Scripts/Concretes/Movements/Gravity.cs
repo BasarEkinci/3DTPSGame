@@ -2,9 +2,11 @@ using UnityEngine;
 
 namespace TPSGame.Movements
 {
+    [RequireComponent(typeof(CharacterController))] // use character controller only with gravity
     public class Gravity : MonoBehaviour
     {
         [SerializeField] private float gravity = -9.81f;
+        
         private CharacterController characterController;
         private Vector3 velocity;
 

@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using TPSGame.Abstracts.Controllers;
 using TPSGame.Abstracts.Movements;
-using TPSGame.Controllers;
 using UnityEngine;
 
 
@@ -10,9 +8,9 @@ namespace TPSGame.Movements
     public class MoveWithCharacterController : IMover
     {
         private CharacterController characterController;
-        public MoveWithCharacterController(PlayerController playerController)
+        public MoveWithCharacterController(IEntityController entityController)
         {
-            characterController = playerController.GetComponent<CharacterController>();
+            characterController = entityController.transform.GetComponent<CharacterController>();
         }
         
         

@@ -1,6 +1,7 @@
 using System;
 
 using System.Collections.Generic;
+using TPSGame.Abstracts.Controllers;
 using TPSGame.Abstracts.Inputs;
 using TPSGame.Abstracts.Movements;
 using TPSGame.Animations;
@@ -9,7 +10,7 @@ using UnityEngine;
 
 namespace TPSGame.Controllers
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour,IEntityController
     {
         [Header("Movement Informations")] 
         [SerializeField] private float moveSpeed = 10f;
