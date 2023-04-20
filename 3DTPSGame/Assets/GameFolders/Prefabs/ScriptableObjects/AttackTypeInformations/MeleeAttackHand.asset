@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5416d42adac25e142835f644a3b5e6f9, type: 3}
   m_Name: MeleeAttackHand
   m_EditorClassIdentifier: 
-  damage: 10
-  floatValue: 1
+  attackType: 1
+  damage: 20
+  floatValue: 0.25
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
-  attackSpeed: 0.25
+    m_Bits: 2147483647
+  attackSpeed: 0.2
