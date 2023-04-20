@@ -17,7 +17,7 @@ namespace TPSGame.Controllers
 
         private void Awake()
         {
-            attackType = new RangeAttackType(transformObject, attackSo);
+            attackType = attackSo.GetAttackType(transformObject);
         }
 
         private void Update()
