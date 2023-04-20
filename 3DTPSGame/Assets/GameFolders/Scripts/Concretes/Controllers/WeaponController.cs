@@ -1,36 +1,37 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using TPSGame.Abstracts.Combats;
+using TPSGame.Combats;
+using TPSGame.ScriptableObjects;
 using UnityEngine;
 
 namespace TPSGame.Controllers
 {
     public class WeaponController : MonoBehaviour
     {
-        [SerializeField] private bool canFire;
-        [SerializeField] private float attackSpeed = 0.25f;
-        [SerializeField] private float distance = 100f;
-        [SerializeField] private Camera camera;
-        [SerializeField] private LayerMask layerMask;
-        private float currentTime = 0f;
         
+        [SerializeField] private bool canFire;
+        [SerializeField] private Transform transformObject;
+        [SerializeField] private AttackSO attackSo;
+        
+        private float currentTime = 0f;
+        private IAttackType attackType;
+
+        private void Awake()
+        {
+            attackType = new RangeAttackType(transformObject, attackSo);
+        }
+
         private void Update()
         {
             currentTime += Time.deltaTime;
 
-            canFire = currentTime > attackSpeed;
+            canFire = currentTime > attackSo.AttackSpeed;
         }
 
         public void Attack()
         {
             if (!canFire) return;
 
-            Ray ray = camera.ViewportPointToRay(Vector3.one / 2f);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, distance,layerMask))
-            {
-                Debug.Log(hit.collider.gameObject.name);
-            }
+            attackType.AttackAction();
             
             currentTime = 0f;
         }

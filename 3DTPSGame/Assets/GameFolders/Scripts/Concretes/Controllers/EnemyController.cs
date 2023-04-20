@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TPSGame.Abstracts.Combats;
 using TPSGame.Abstracts.Controllers;
 using TPSGame.Abstracts.Movements;
 using TPSGame.Animations;
+using TPSGame.Combats;
 using TPSGame.Movements;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,6 +16,7 @@ namespace TPSGame.Controllers
     {
         [SerializeField] private Transform playerPrefab;
 
+        private IHealth health;
         private IMover mover;
         private CharacterAnimation animation;
         private NavMeshAgent navMeshAgent;
@@ -23,10 +26,13 @@ namespace TPSGame.Controllers
             mover = new MoveWithNawMesh(this);
             animation = new CharacterAnimation(this);
             navMeshAgent = GetComponent<NavMeshAgent>();
+            health = GetComponent<IHealth>();
         }
 
         private void Update()
         {
+            if (health.IsDead) return;
+            
             mover.MoveAction(playerPrefab.transform.position,10f);
         }
 
